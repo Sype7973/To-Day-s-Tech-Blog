@@ -4,7 +4,7 @@ const withAuth = require('../utils/withAuth');
 
 // this page displays data if the user is logged in
 // get all blog posts for displaying on the dashboard plus comments
-router.get('/user', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try { 
         const blogPostData = await blogPost.findAll({
             include: [
