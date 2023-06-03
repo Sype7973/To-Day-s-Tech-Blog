@@ -7,14 +7,13 @@ const morgan = require('morgan');
 
 
 const exphbs = require('express-handlebars');
-const sequelize = require('./config/connection');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const handlebars = require('handlebars');
 
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 
 // Sets up session and connect to our Sequelize db
 const sess = {
@@ -43,7 +42,8 @@ app.use(session(sess));
 // Create the Handlebars.js engine object with custom helper functions
 const hbs = exphbs.create({ helpers });
 
-handlebars.registerHelper(handlehelpers);
+// handlebars helpers npm in case we need it
+// handlebars.registerHelper(handlehelpers);
 
 // Inform Express.js which template engine we're using
 app.engine('handlebars', hbs.engine);
