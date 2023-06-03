@@ -1,10 +1,11 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { comments } = require('../../models');
 const withAuth = require('../../utils/withAuth');
 
+// this page allows the user to create, delete and update comments if they are logged in
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newComment = await Comment.create({
+    const newComment = await comments.create({
       ...req.body,
       user_id: req.session.user_id,
     });
@@ -16,7 +17,7 @@ router.post('/', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const commentData = await Comment.update(req.body, {
+    const commentData = await comments.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -33,7 +34,7 @@ router.put('/:id', withAuth, async (req, res) => {
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const commentData = await Comment.destroy({
+    const commentData = await comments.destroy({
       where: {
         id: req.params.id,
       },

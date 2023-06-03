@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const { User, blogPost, comments } = require('../models');
-const withAuth = require('../utils/withAuth');
 
-// this page displays data if the user is logged in
-// get all blog posts for displaying on the dashboard plus comments
-router.get('/user', withAuth, async (req, res) => {
-    try { 
+// this page displays data even if the user is not logged in
+// get all blog posts for displaying on the dashboard
+router.get('/dashboard', async (req, res) => {
+    try {
         const blogPostData = await blogPost.findAll({
             include: [
                 {
@@ -32,7 +31,6 @@ router.get('/user', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 
 
 
