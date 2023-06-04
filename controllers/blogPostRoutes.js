@@ -30,7 +30,6 @@ router.get('/all', async (req, res) => {
 });
 
 // to get to this route localhost:3001/blogPost/create
-
 router.get('/create', async (req, res) => {
     try {
         res.render('newBlogPost');
