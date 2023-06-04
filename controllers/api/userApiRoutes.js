@@ -65,7 +65,7 @@ router.get('/:id', async (req, res) => {
 
 
 // creates a user
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const userData = await User.create(req.body);
         req.session.save(() => {
@@ -115,5 +115,7 @@ router.post('/logout', (req, res) => {
     }
 }
 );
+
+
 
 module.exports = router;

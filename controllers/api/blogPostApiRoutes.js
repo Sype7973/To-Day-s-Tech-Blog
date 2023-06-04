@@ -93,5 +93,34 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.get('/create', async (req, res) => {
+    try {
+        res.render('newBlogPost');
+    } catch (err) {
+        console.log('error in dashboard route');
+        res.status(500).json(err);
+    }
+});
+
+router.get('/edit/:id', async (req, res) => {
+    try {
+        const blogPostData = await blogPost.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+        });
+        const blogPost = blogPostData.get({ plain: true });
+        res.render('editBlogPost', {
+            ...blogPost,
+        });
+    } catch (err) {
+        console.log('error in dashboard route');
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;

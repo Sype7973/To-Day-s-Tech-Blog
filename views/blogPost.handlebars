@@ -10,8 +10,7 @@
 
     <div class="content">
       {{blogPosts.body}}
-      <br>
-      <time datetime="2016-1-1">{{date}}</time>
+      {{date_created}}
     </div>
   </div>
 </div>
@@ -24,7 +23,7 @@
           </div>
         </div>
         <div class="content">
-          {{#each comments}}
+          {{#each Blogcomment}}
           <div class="card">
             <div class="card-content">
               <div class="media">
