@@ -31,6 +31,11 @@ comments.init(
             },
             allowNull: false,
         },
+        date_created: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+    },
     },
     {
         sequelize,
@@ -38,7 +43,9 @@ comments.init(
         freezeTableName: true,
         underscored: true,
         modelName: 'comments',
+    
     }
+    
 );
 
 module.exports = comments;

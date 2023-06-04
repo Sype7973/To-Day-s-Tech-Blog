@@ -1,0 +1,40 @@
+{{!-- dashboard that shows blogposts with no comments unless logged in --}}
+{{#if logged_in}}
+{{#each blogposts}}
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">{{title}}</p>
+        <p class="subtitle is-6">{{author}}</p>
+      </div>
+    </div>
+
+    <div class="content">
+      {{body}}
+      <br>
+      <time datetime="2016-1-1">{{date}}</time>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{else}}
+{{#each blogposts}}
+{{#if comments}}
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">{{title}}</p>
+        <p class="subtitle is-6">{{author}}</p>
+      </div>
+    </div>
+
+    <div class="content">
+      {{body}}
+      <br>
+      <time datetime="2016-1-1">{{date}}</time>
+    </div>
+  </div>
+</div>
+
