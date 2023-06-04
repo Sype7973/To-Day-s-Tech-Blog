@@ -1,68 +1,28 @@
 const router = require('express').Router();
 const { User, blogPost, Blogcomment } = require('../../models');
 
-
-// get blogpost by id and show comments
-router.get('/:id', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const blogPostData = await blogPost.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: comments,
-                    attributes: ['comment_body', 'date_created', 'user_id'],
-                    include: {
-                        model: User,
-                        attributes: ['username'],
-                    },
-                },
-            ],
+        console.log('Creating a new user:', req.body);
+        const newUser = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
         });
-        const blogPostID = blogPostData.get({ plain: true });
-        res.render('blogPost', {
-            ...blogPostID,
-            logged_in: req.session.logged_in
+        req.session.save(() => {
+            req.session.user_id = newUser.id;
+            req.session.username = newUser.username;
+            req.session.loggedIn = true;
+            console.log('New user created:', newUser);
+            res.status(200).json(newUser);
         });
     } catch (err) {
-        res.status(500).json(err);
-    }
-});
-  
-// this page displays data if the user is logged in
-// get all blog posts for displaying on the dashboard plus comments
-router.get('/', async (req, res) => {
-    try { 
-        const blogPostData = await blogPost.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: Blogcomment,
-                    attributes: ['comment_body', 'date_created', 'user_id'],
-                    include: {
-                        model: User,
-                        attributes: ['username'],
-                    },
-                },
-            ],
-        });
-        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-        res.render('dashboard', {
-
-            blogPosts,
-            logged_in: req.session.logged_in
-        });
-    } catch (err) {
-        console.log("error in dashboard route");
+        console.log(err);
         res.status(500).json(err);
     }
 });
 
+// User login route
 // User login route
 router.post('/login', async (req, res) => {
     try {

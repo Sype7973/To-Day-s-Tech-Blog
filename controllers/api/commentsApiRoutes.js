@@ -2,8 +2,8 @@ const router = require('express').Router();
 const { Blogcomment, User, blogPost } = require('../../models');
 const withAuth = require('../../utils/withAuth');
 
-// this page allows the user to create, delete and update comments if they are logged in
-// get all comments
+
+// get all comments not render just create json data
 router.get('/', async (req, res) => {
   try {
     const commentData = await Blogcomment.findAll({
@@ -18,18 +18,14 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-    const comments = commentData.map((comment) => comment.get({ plain: true }));
-    res.render('dashboard', {
-      comments,
-      logged_in: req.session.logged_in,
-    });
+    res.status(200).json(commentData);
   } catch (err) {
     console.log('error in dashboard route');
     res.status(500).json(err);
   }
 });
 
-// get comments by id
+// get comments by id do not render
 router.get('/:id', async (req, res) => {
   try {
     const commentData = await Blogcomment.findByPk(req.params.id, {
@@ -44,13 +40,12 @@ router.get('/:id', async (req, res) => {
         },
       ],
     });
-    const comment = commentData.get({ plain: true });
-    res.render('blogPost', {
-      ...comment,
-      logged_in: req.session.logged_in,
-    });
+    const uniqueComment = commentData.get({ plain: true });
+    console.log(uniqueComment);
+    res.status(200).json(uniqueComment);
   } catch (err) {
     console.log('error in dashboard route');
+    console.log(err);
     res.status(500).json(err);
   }
 });

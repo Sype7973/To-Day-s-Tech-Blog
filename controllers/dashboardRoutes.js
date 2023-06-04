@@ -1,44 +1,6 @@
 const router = require('express').Router();
 const { User, blogPost, Blogcomment } = require('../models');
 
-// Login route
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-    } else {
-        res.render('login-signup');
-    }
-});
-
-// Logout route
-router.get('/logout', (req, res) => {
-    if (req.session.logged_in) {
-        req.session.destroy(() => {
-            res.redirect('/');
-        });
-    } else {
-        res.redirect('/');
-    }
-});
-
-// // User registration route
-// router.post('/', async (req, res) => {
-//     try {
-//         const userData = await User.create(req.body);
-
-//         req.session.save(() => {
-//             req.session.user_id = userData.id;
-//             req.session.logged_in = true;
-
-//             res.status(200).json(userData);
-//         });
-//     } catch (err) {
-//         res.status(400).json(err);
-//     }
-// });
-
-
-
 // Dashboard route
 router.get('/', async (req, res) => {
     try {
@@ -64,5 +26,29 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+// Login route
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+    } else {
+        res.render('login-signup');
+    }
+});
+
+// Logout route
+router.get('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.redirect('/');
+        });
+    } else {
+        res.redirect('/');
+    }
+});
+
+
+
+// logged in route render
 
 module.exports = router;
