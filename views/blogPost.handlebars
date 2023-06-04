@@ -1,41 +1,42 @@
-{{!-- going into one blogpost being able to comment and delete comments card takes up more space --}}
 <div class="card">
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{blogPosts.title}}</p>
+        <p class="title is-4">{{title}}</p>
         <p class="subtitle is-6">{{User.username}}</p>
       </div>
     </div>
 
     <div class="content">
-      {{blogPosts.body}}
+      {{body}}
+      <br>
       {{date_created}}
     </div>
   </div>
 </div>
-    {{!-- comment section --}}
-    <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-4">Comments</p>
-          </div>
-        </div>
-        <div class="content">
-          {{#each Blogcomment}}
-          <div class="card">
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">{{User.username}}</p>
-                </div>
-              </div>
-              <div class="content">
-                {{comment_body}}
+
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">Comments</p>
+      </div>
+    </div>
+    <div class="content">
+      {{#each Blogcomments}}
+        <div class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{User.username}}</p>
               </div>
             </div>
+            <div class="content">
+              {{comment_body}}
+            </div>
           </div>
-          {{/each}}
         </div>
-      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

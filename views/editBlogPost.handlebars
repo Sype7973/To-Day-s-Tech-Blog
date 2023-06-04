@@ -1,0 +1,21 @@
+{{!-- edit blog post, keeps all the blogpost data but allows editing --}}
+<div>
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input" type="text" name="title" value="{{title}}">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Body</label>
+            <div class="control">
+                <textarea class="textarea" name="body">{{body}}</textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-link" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

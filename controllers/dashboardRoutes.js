@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, blogPost, comments } = require('../models');
+const { User, blogPost, Blogcomment } = require('../models');
 
 // this page displays data even if the user is not logged in
 // get all blog posts for displaying on the dashboard, but no comments and only the body of the blog post

@@ -7,11 +7,11 @@
     {
         "comment_body": "checkout React's documentation, it is really good! and easy to follow",
         "blogPost_id": 2,
-        "user_id": 2
+        "user_id": 3
     },
     {
         "comment_body": "handlebars is pretty cool, but I prefer React",
         "blogPost_id": 3,
-        "user_id": 3
+        "user_id": 2
     }
 ]

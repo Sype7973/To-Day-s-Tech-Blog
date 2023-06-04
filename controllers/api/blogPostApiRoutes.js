@@ -72,27 +72,37 @@ router.get('/', async (req, res) => {
     }
 });
 
-// get blogpost by id
+// get blogpost by id and have comments
 router.get('/:id', async (req, res) => {
     try {
-        const blogPostData = await blogPost.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
-        });
-        const blogPost = blogPostData.get({ plain: true });
-        res.render('blogPost', {
-            ...blogPost,
-        });
+      const blogPostData = await blogPost.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+          {
+            model: Blogcomment,
+            attributes: ['id', 'comment_body', 'user_id', 'blogPost_id', 'date_created'],
+            include: {
+              model: User,
+              attributes: ['username'],
+            },
+          },
+        ],
+      });
+      const uniqueBlogPost = blogPostData.get({ plain: true });
+      console.log(uniqueBlogPost);
+      res.render('blogPost', {
+        ...uniqueBlogPost,
+      });
     } catch (err) {
-        console.log('error in dashboard route');
-        res.status(500).json(err);
+      console.log('error in dashboard route');
+      console.log(err);
+      res.status(500).json(err);
     }
-});
-
+  });
+// to get to this route localhost:3001/api/blogposts/create
 router.get('/create', async (req, res) => {
     try {
         res.render('newBlogPost');
@@ -112,9 +122,9 @@ router.get('/edit/:id', async (req, res) => {
                 },
             ],
         });
-        const blogPost = blogPostData.get({ plain: true });
+        const UpdateblogPost = blogPostData.get({ plain: true });
         res.render('editBlogPost', {
-            ...blogPost,
+            ...UpdateblogPost,
         });
     } catch (err) {
         console.log('error in dashboard route');
