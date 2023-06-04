@@ -72,6 +72,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+// to get to this route localhost:3001/api/blogposts/create
+router.get('/create', async (req, res) => {
+    try {
+        res.render('newBlogPost');
+    } catch (err) {
+        console.log('error in dashboard route');
+        res.status(500).json(err);
+    }
+});
+
 // get blogpost by id and have comments
 router.get('/:id', async (req, res) => {
     try {
@@ -102,15 +112,7 @@ router.get('/:id', async (req, res) => {
       res.status(500).json(err);
     }
   });
-// to get to this route localhost:3001/api/blogposts/create
-router.get('/create', async (req, res) => {
-    try {
-        res.render('newBlogPost');
-    } catch (err) {
-        console.log('error in dashboard route');
-        res.status(500).json(err);
-    }
-});
+
 
 router.get('/edit/:id', async (req, res) => {
     try {
