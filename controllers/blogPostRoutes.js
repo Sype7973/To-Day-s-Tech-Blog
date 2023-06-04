@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { User, blogPost, Blogcomment } = require('../models');
-// const withAuth = require('../utils/auth');
+const withAuth = require('../utils/withAuth');
 
 
 // get all blogposts
-router.get('/all', async (req, res) => {
+router.get('/all', withAuth, async (req, res) => {
     try {
         const blogPostData = await blogPost.findAll({
             include: [
@@ -29,18 +29,17 @@ router.get('/all', async (req, res) => {
     }
 });
 
-// to get to this route localhost:3001/blogPost/create
-router.get('/create', async (req, res) => {
+// to get to this route localhost:3001/blogPost/create recognises signed in status
+router.get('/create', withAuth, async (req, res) => {
     try {
-        res.render('newBlogPost');
+        res.render('createBlogPost');
     } catch (err) {
-        console.log('error in dashboard route');
         res.status(500).json(err);
     }
 });
 
 // get blogpost by id and have comments
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
       const blogPostData = await blogPost.findByPk(req.params.id, {
         include: [
