@@ -8,15 +8,15 @@ const loginFormHandler = async (event) => {
   
     if (email && password && username) {
       // Send a POST request to the API endpoint
-      const response = await fetch('/login', { // Updated URL to /login
+      const response = await fetch('/api/users', { // Updated URL to /login
         method: 'POST',
         body: JSON.stringify({ username, email, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        // If successful, redirect the browser to the profile page (list of all pets)
-        document.location.replace('/');
+        // If successful, redirect the browser to the profile page blogposts plus comments
+        document.location.replace('/api/users');
       } else {
         alert(response.statusText);
       }
@@ -31,14 +31,14 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-signup').value.trim();
   
     if (username && email && password) {
-      const response = await fetch('/', { // Updated URL to /
+      const response = await fetch('/api/users', { // Updated URL to /
         method: 'POST',
         body: JSON.stringify({ username, email, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/api/users');
       } else {
         alert(response.statusText);
       }
