@@ -31,47 +31,9 @@
           Home
         </a>
 
-        <a href="/posts/all" class="navbar-item">
-          Tech Community
+        <a href="/posts/create" class="navbar-item">
+          Create a Post
         </a>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a href="/posts/WebDev" class="navbar-link">
-            Web Development
-          </a>
-
-          <div class="navbar-dropdown">
-            <a href="/posts/WebDev/Tutorials" class="navbar-item">
-              Tutorials
-            </a>
-            <a href="/posts/WebDev/News" class="navbar-item">
-              News
-            </a>
-            <hr class="navbar-divider">
-            <a href="/posts/WebDev/all" class="navbar-item">
-              All WebDev Posts
-            </a>
-          </div>
-        </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a href="/posts/DataSci" class="navbar-link">
-            Data Science
-          </a>
-
-          <div class="navbar-dropdown">
-            <a href="/posts/DataSci/Tutorials" class="navbar-item">
-              Tutorials
-            </a>
-            <a href="/posts/DataSci/News" class="navbar-item">
-              News
-            </a>
-            <hr class="navbar-divider">
-            <a href="/posts/DataSci/all" class="navbar-item">
-              All DataSci Posts
-            </a>
-          </div>
-        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
@@ -100,7 +62,6 @@
   <div class="Mainpage">
     {{{body}}}
   </div>
-  </main>
   {{#if logged_in}}
   {{!-- script for homepage/main page functionality --}}
   <script src="/js/logout.js"></script>
@@ -113,5 +74,4 @@
     </div>
   </footer>
 </body>
-
 </html>

@@ -1,9 +1,61 @@
 const router = require('express').Router();
-const { comments } = require('../../models');
+const { comments, User, blogPost } = require('../../models');
 const withAuth = require('../../utils/withAuth');
 
 // this page allows the user to create, delete and update comments if they are logged in
-router.post('/', withAuth, async (req, res) => {
+// get all comments
+router.get('/', async (req, res) => {
+  try {
+    const commentData = await comments.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: blogPost,
+          attributes: ['title'],
+        },
+      ],
+    });
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+    res.render('dashboard', {
+      comments,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log('error in dashboard route');
+    res.status(500).json(err);
+  }
+});
+
+// get comments by id
+router.get('/:id', async (req, res) => {
+  try {
+    const commentData = await comments.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: blogPost,
+          attributes: ['title'],
+        },
+      ],
+    });
+    const comment = commentData.get({ plain: true });
+    res.render('blogPost', {
+      ...comment,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log('error in dashboard route');
+    res.status(500).json(err);
+  }
+});
+
+router.post('/', async (req, res) => {
   try {
     const newComment = await comments.create({
       ...req.body,
@@ -15,7 +67,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', withAuth, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const commentData = await comments.update(req.body, {
       where: {
@@ -32,7 +84,7 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const commentData = await comments.destroy({
       where: {

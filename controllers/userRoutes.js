@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { User, blogPost, comments } = require('../models');
-const withAuth = require('../utils/withAuth');
+const { User, blogPost, comments } = require('../../models');
+const withAuth = require('../../utils/withAuth');
 
 // this page displays data if the user is logged in
 // get all blog posts for displaying on the dashboard plus comments
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try { 
         const blogPostData = await blogPost.findAll({
             include: [
@@ -29,11 +29,12 @@ router.get('/', withAuth, async (req, res) => {
             logged_in: req.session.logged_in
         });
     } catch (err) {
+        console.log("error in dashboard route");
         res.status(500).json(err);
     }
 });
 // get blogpost by id
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const blogPostData = await blogPost.findByPk(req.params.id, {
             include: [

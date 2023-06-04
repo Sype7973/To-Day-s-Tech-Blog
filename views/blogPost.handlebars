@@ -3,19 +3,18 @@
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{blogPost.title}}</p>
+        <p class="title is-4">{{blogPosts.title}}</p>
         <p class="subtitle is-6">{{User.username}}</p>
       </div>
     </div>
 
     <div class="content">
-      {{blogPost.body}}
+      {{blogPosts.body}}
       <br>
       <time datetime="2016-1-1">{{date}}</time>
     </div>
   </div>
 </div>
-    
     {{!-- comment section --}}
     <div class="card">
       <div class="card-content">
@@ -34,7 +33,7 @@
                 </div>
               </div>
               <div class="content">
-                {{comments}}
+                {{comment_body}}
               </div>
             </div>
           </div>
