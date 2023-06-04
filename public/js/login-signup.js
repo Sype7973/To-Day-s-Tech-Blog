@@ -16,7 +16,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page (list of all pets)
-      document.location.replace('/users');
+      document.location.replace('/api/users');
     } else {
       alert(response.statusText);
     }
@@ -38,7 +38,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/users');
+      document.location.replace('/api/users');
     } else {
       alert(response.statusText);
     }
