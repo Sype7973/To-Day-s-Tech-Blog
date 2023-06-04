@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const { comments, User, blogPost } = require('../../models');
+const { Blogcomment, User, blogPost } = require('../../models');
 const withAuth = require('../../utils/withAuth');
 
 // this page allows the user to create, delete and update comments if they are logged in
 // get all comments
 router.get('/', async (req, res) => {
   try {
-    const commentData = await comments.findAll({
+    const commentData = await Blogcomment.findAll({
       include: [
         {
           model: User,
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
 // get comments by id
 router.get('/:id', async (req, res) => {
   try {
-    const commentData = await comments.findByPk(req.params.id, {
+    const commentData = await Blogcomment.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -57,7 +57,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const newComment = await comments.create({
+    const newComment = await Blogcomment.create({
       ...req.body,
       user_id: req.session.user_id,
     });

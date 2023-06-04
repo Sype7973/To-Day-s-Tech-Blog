@@ -13,7 +13,9 @@ router.get('/', async (req, res) => {
                 },
             ],
         });
+        console.log(blogPostData);
         const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
+        
         res.render('dashboard', {
             blogPosts,
         });
