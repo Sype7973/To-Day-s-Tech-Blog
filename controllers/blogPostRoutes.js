@@ -19,10 +19,11 @@ router.get('/all', withAuth, async (req, res) => {
         console.log(blogPosts);
 
         // Set the logged_in status in the res.locals object
-        res.locals.logged_in = req.session.logged_in || false;
+        res.locals.logged_in = req.session.logged_in || true;
 
-        res.render('BlogPostsAll', {
+        res.render('allBlogPost', {
             blogPosts,
+            logged_in: req.session.logged_in,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -32,7 +33,7 @@ router.get('/all', withAuth, async (req, res) => {
 // to get to this route localhost:3001/blogPost/create recognises signed in status
 router.get('/create', withAuth, async (req, res) => {
     try {
-        res.render('createBlogPost');
+        res.render('newBlogPost');
     } catch (err) {
         res.status(500).json(err);
     }
@@ -61,6 +62,7 @@ router.get('/:id', withAuth, async (req, res) => {
       console.log(uniqueBlogPost);
       res.render('blogPost', {
         ...uniqueBlogPost,
+        logged_in: req.session.logged_in,
       });
     } catch (err) {
       console.log('error in dashboard route');

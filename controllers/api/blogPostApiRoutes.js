@@ -21,6 +21,7 @@ router.put('/:id',  async (req, res) => {
     const blogPostData = await blogPost.update(req.body, {
         where: {
             id: req.params.id,
+            user_id: req.session.user_id,
         },
     });
     if (!blogPostData) {

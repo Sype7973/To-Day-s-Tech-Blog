@@ -37,6 +37,29 @@
           </div>
         </div>
       {{/each}}
+      {{!-- if logged in statement to delete/edit blogpost if it belongs to user --}}
+      {{#if logged_in}}
+        {{#if isOwner}}
+          <a href="/blogposts/{{id}}/edit" class="button is-primary">Edit</a>
+          <a href="/blogposts/{{id}}/delete" class="button is-danger">Delete</a>
+        {{/if}}
+      {{/if}}
+      {{!-- if logged in statement to add comment --}}
+      {{#if logged_in}}
+        <form action="/blogposts/{{id}}/addcomment" method="POST">
+          <div class="field">
+            <label class="label">Add a comment</label>
+            <div class="control">
+              <textarea class="textarea" name="comment_body" placeholder="Add a comment"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-link">Submit</button>
+            </div>
+          </div>
+        </form>
+      {{/if}}
     </div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, blogPost, Blogcomment } = require('../models');
+const withAuth = require('../utils/withAuth');
 
 // Dashboard route
 router.get('/', async (req, res) => {
@@ -41,10 +42,10 @@ router.get('/login', (req, res) => {
 router.get('/logout', (req, res) => {
     if (req.session.logged_in) {
         req.session.destroy(() => {
-            res.redirect('/');
+            res.redirect('/login');
         });
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 });
 
