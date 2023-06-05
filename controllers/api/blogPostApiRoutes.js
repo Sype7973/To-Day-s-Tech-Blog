@@ -1,22 +1,25 @@
 const router = require('express').Router();
-const { blogPost, User, Blogcomment } = require('../../models');
+const { blogPost } = require('../../models');
+const withAuth = require('../../utils/withAuth');
 
 // this page allows the user to create, delete and update a new blog post if they are logged in
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     // Code for creating a new blog post
     const newBlogPost = await blogPost.create({
-        ...req.body,
+        title: req.body.title,
+        body: req.body.body,
         user_id: req.session.user_id,
         });
         res.status(200).json(newBlogPost);
+        console.log(newBlogPost);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
 // updates a blog post if they are logged in
-router.put('/:id',  async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     const blogPostData = await blogPost.update(req.body, {
         where: {
@@ -35,7 +38,7 @@ router.put('/:id',  async (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const blogPostData = await blogPost.destroy({
         where: {

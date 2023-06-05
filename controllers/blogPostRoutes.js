@@ -33,7 +33,9 @@ router.get('/all', withAuth, async (req, res) => {
 // to get to this route localhost:3001/blogPost/create recognises signed in status
 router.get('/create', withAuth, async (req, res) => {
     try {
-        res.render('newBlogPost');
+        res.render('newBlogPost', {
+            logged_in: req.session.logged_in,
+            });
     } catch (err) {
         res.status(500).json(err);
     }

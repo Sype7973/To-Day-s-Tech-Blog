@@ -15,8 +15,8 @@ const newBlogPostHandler = async (event) => {
         });
     
         if (response.ok) {
-        // If successful, redirect the browser to the profile page (list of all pets)
-        document.location.replace('/');
+        // If successful, redirect the browser to the profile page (list of blogposts)
+        document.location.replace('/dashboard');
         } else {
         alert(response.statusText);
         }
