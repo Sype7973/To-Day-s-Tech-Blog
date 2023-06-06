@@ -47,7 +47,7 @@ router.get('/:id', withAuth, async (req, res) => {
   });
 
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const blogPostData = await blogPost.findByPk(req.params.id, {
             include: [

@@ -45,14 +45,14 @@ const commentFormHandler = async (event) => {
       event.preventDefault();
   
       try {
-        const response = await fetch(`/api/blogPost/${blogID}`, {
+        const response = await fetch(`/api/blogposts/${blogID}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         });
   
         if (response.ok) {
           // If successful, refresh to view comment
-          document.location.replace(`/blogPost/${blogID}`);
+          document.location.replace(`/blogposts/${blogID}`);
         } else {
           throw new Error(response.statusText);
         }
@@ -100,4 +100,3 @@ const commentFormHandler = async (event) => {
       }
     });
   });
-  
