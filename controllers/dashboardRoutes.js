@@ -3,7 +3,7 @@ const { User, blogPost, Blogcomment } = require('../models');
 const withAuth = require('../utils/withAuth');
 
 // Dashboard route
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const blogPostData = await blogPost.findAll({
             include: [

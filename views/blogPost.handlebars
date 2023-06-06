@@ -1,15 +1,19 @@
-<div class="card">
-  <div class="card-content">
-    <div class="media">
-      <div class="media-content">
-        <p class="title is-4" id="blog-title" data-blog-id="{{id}}">{{title}}</p>
-        <p class="subtitle is-6" id="username">{{User.username}}</p>
+<div class="container">
+  <div class="card mb-4">
+    <div class="card-content p-4">
+      <div class="media">
+        <div class="media-content">
+       
+          <p class="title is-4" id="blog-title" data-blog-id="{{id}}">{{title}}</p>
+          <p class="subtitle is-6" id="username">{{User.username}}</p>
+                    <br>
+            <p id="time">{{date_created}}</p>
+                    <br>
+        </div>
       </div>
-    </div>
-    <div class="content">
-      {{body}}
-      <br>
-      {{date_created}}
+      <div class="content">
+        {{body}}
+      </div>
     </div>
   </div>
 </div>
@@ -22,20 +26,24 @@
     </div>
     <div class="content">
       {{#each Blogcomments}}
-        <div class="card">
+        <div class="card mb-4">
           <div class="card-content">
             <div class="media">
               <div class="media-content">
                 <p class="title is-4">{{User.username}}</p>
                 {{#if isCommentOwner}}
-                  <button class="button is-primary is-small comment-edit" data-comment-id="{{id}}">Edit</button>
-                  <button class="button is-danger is-small comment-delete" data-comment-id="{{id}}">Delete</button>
+                  <div class="buttons">
+                    <button class="button is-primary is-small comment-edit" data-comment-id="{{id}}">Edit</button>
+                    <button class="button is-danger is-small comment-delete" data-comment-id="{{id}}">Delete</button>
+                  </div>
                 {{/if}}
               </div>
             </div>
             <div class="content">
               {{comment_body}}
             </div>
+            <br>
+       <p id="time">{{date_created}}</p>
           </div>
         </div>
       {{/each}}

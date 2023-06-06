@@ -1,28 +1,30 @@
 {{!-- dashboard that shows blogposts with no comments unless logged in --}}
-<div>
+<div class="columns is-centered">
+  <div class="column is-half">
     {{#each blogPosts}}
     <div class="card">
-        <div class="card-content">
-            <div class="media">
-                <div class="media-content">
-                    <p class="title is-4">{{title}}</p>
-                    <p class="subtitle is-6">{{body}}</p>
-                </div>
-            </div>
-            <div class="content">
-                <p>User: {{User.username}}</p>
-                <p>Title: {{title}}</p>
-                <p>Created: {{date_created}}</p>
-            </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{title}}</p>
+            <p class="subtitle is-6">{{body}}</p>
+          </div>
         </div>
-        <footer class="card-footer">
-            <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
-            {{!-- only show edit and delete buttons if logged in --}}
-            {{#if logged_in}}
-            <a href="/blogposts/{{id}}/edit" class="card-footer-item">Edit</a>
-            <a href="/blogposts/{{id}}/delete" class="card-footer-item">Delete</a>
-            {{/if}}
-        </footer>
+        <div class="content">
+          <p>User: {{User.username}}</p>
+          <p>Title: {{title}}</p>
+          <p id="time">Created: {{date_created}}</p>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
+        {{!-- only show edit and delete buttons if logged in --}}
+        {{#if logged_in}}
+        <a href="/blogposts/edit/{{id}}" class="card-footer-item">Edit</a>
+        <a href="/blogposts/delete/{{id}}" class="card-footer-item">Delete</a>
+        {{/if}}
+      </footer>
     </div>
     {{/each}}
+  </div>
 </div>

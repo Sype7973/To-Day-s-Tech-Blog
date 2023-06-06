@@ -3,33 +3,6 @@ const { User, blogPost, Blogcomment } = require('../models');
 const withAuth = require('../utils/withAuth');
 
 
-// get all blogposts
-router.get('/all', withAuth, async (req, res) => {
-    try {
-        const blogPostData = await blogPost.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
-        });
-        console.log(blogPostData);
-        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-        console.log(blogPosts);
-
-        // Set the logged_in status in the res.locals object
-        res.locals.logged_in = req.session.logged_in || true;
-
-        res.render('allBlogPost', {
-            blogPosts,
-            logged_in: req.session.logged_in,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
 // to get to this route localhost:3001/blogPost/create recognises signed in status
 router.get('/create', withAuth, async (req, res) => {
     try {
