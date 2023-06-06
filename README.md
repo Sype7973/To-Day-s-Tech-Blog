@@ -19,7 +19,7 @@ heroku app link: https://to-days-tech-blog1.herokuapp.com/
 
 ## Usage
 
-to access the website use the heroku app link: https://to-days-tech-blog.herokuapp.com/ or by cloning the repo. Once on the application, you will have to sign up before viewing any blogposts, you should be redirected to the sign up page as all of the application requires a login session to access. please enter in a Name, Username, email and password
+to access the website use the heroku app link: https://to-days-tech-blog.herokuapp.com/ or by cloning the repo. Once on the application, you will have to sign up before viewing any blogposts, you should be redirected to the sign up page as all of the application requires a login session to access. please enter in a Name, Username, email and password to create an account. You can also access your own homepage to view your posts and edit them and delete them. You can also comment on other users posts.
 
 ![Sign up page](/public/img/screencap.PNG)
 
