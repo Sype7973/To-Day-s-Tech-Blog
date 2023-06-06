@@ -5,14 +5,14 @@
         <div class="media-content">
           <p class="title is-4" id="blog-title" data-blog-id="{{id}}">{{title}}</p>
           <p class="subtitle is-6" id="username">{{User.username}}</p>
-          <br>
-          <p id="time">{{date_created}}</p>
-          <br>
         </div>
       </div>
       <div class="content">
         {{body}}
       </div>
+          <br>
+          <p id="time">{{format_date date_created}}</p>
+          <br>
     </div>
     <footer class="card-footer">
       {{#if isBlogOwner}}
@@ -42,7 +42,7 @@
               {{comment_body}}
             </div>
             <br>
-            <p id="time">{{date_created}}</p>
+            <p id="time">{{format_date date_created}}</p>
           </div>
           {{!-- {{#ifEquals User.id user_id}} --}}
           <div class="buttons">

@@ -28,13 +28,8 @@ const sess = {
   }),
 };
 
-handlebars.registerHelper('ifEquals', function(a, b, opts) {
-  if (a === b) {
-      return opts.fn(this);
-  } else {
-      return opts.inverse(this);
-  }
-});
+handlebars.registerHelper(handlehelpers);
+
 
 app.use(session(sess));
 app.use(morgan('dev'));
@@ -43,6 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const hbs = exphbs.create({ helpers });
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

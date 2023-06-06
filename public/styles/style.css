@@ -27,3 +27,37 @@
     font-size: 10px;
     color: #999;
   }
+
+  #navBarBanner {
+    height: 80px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .navbar-menu{
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+  }
+
+#dashboardBlogTitle {
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+  }
+
+#dashboardBlogContent{
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+#blog-title {
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+  }
+
+#username {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+  }

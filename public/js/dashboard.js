@@ -17,6 +17,6 @@ const deleteBlogPost = async (event) => {
     }
 };
 
-document.querySelectorAll('.deleteBlogPost').forEach((button) => {
+document.querySelectorAll('#deleteBlogPost').forEach((button) => {
     button.addEventListener('click', deleteBlogPost);
 });
