@@ -62,19 +62,19 @@ const commentFormHandler = async (event) => {
     });
   }
   
-  document.addEventListener('DOMContentLoaded', function () {
-    const deleteButtons = document.querySelectorAll('.comment-delete');
-    const userID = deleteBlogButton ? deleteBlogButton.dataset.userId : null;
-  
-    deleteButtons.forEach(button => {
-      const commentOwner = button.dataset.commentUser;
-      if (commentOwner === userID) {
-        button.classList.remove('is-hidden');
-      } else {
-        button.classList.add('is-hidden');
-      }
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const deleteButtons = document.querySelectorAll('.comment-delete');
+  const userID = deleteBlogButton ? deleteBlogButton.dataset.userId : null;
+
+  deleteButtons.forEach(button => {
+    const commentOwner = button.dataset.commentUser;
+    if (commentOwner === userID) {
+      button.classList.remove('is-hidden');
+    } else {
+      button.classList.add('is-hidden');
+    }
   });
+});
   
   const deleteButtons = document.querySelectorAll('.comment-delete');
   

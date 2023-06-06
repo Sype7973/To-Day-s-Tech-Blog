@@ -36,10 +36,10 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4">{{User.username}}</p>
-                {{#if isCommentOwner}}
+                {{#if iscommentOwner}}
                   <div class="buttons">
-                    <button class="button is-primary is-small comment-edit is-hidden" data-comment-id="{{id}}">Edit</button>
-                    <button class="button is-danger is-small comment-delete is-hidden" data-comment-id="{{id}}">Delete</button>
+                    <button class="button is-primary is-small comment-edit is-hidden" id='hide' data-comment-id="{{id}}" data-comment-user="{{User.id}}">Edit</button>
+                    <button class="button is-danger is-small comment-delete is-hidden" id='hide' data-comment-id="{{id}}" data-comment-user="{{User.id}}">Delete</button>
                   </div>
                 {{/if}}
               </div>
