@@ -4,6 +4,7 @@ const withAuth = require('../utils/withAuth');
 
 
 // to get to this route localhost:3001/blogPost/create recognises signed in status
+// localhost:8080/blogpost/create
 router.get('/create', withAuth, async (req, res) => {
     try {
         res.render('newBlogPost', {

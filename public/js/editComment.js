@@ -4,7 +4,7 @@ const updateCommentHandler = async (event) => {
 
   const content = document.querySelector('#edit-comment').value.trim();
   const commentId = document.querySelector('#commentId').getAttribute('data-comment-id');
-
+  console.log(content, commentId);
   if (content && commentId) {
     try {
       const response = await fetch(`/api/comments/${commentId}`, {

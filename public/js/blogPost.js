@@ -71,7 +71,8 @@ deleteButtons.forEach(button => {
 const deleteBlogButton = document.querySelector('#delete-blog');
   
 if (deleteBlogButton) {
-  const blogID = document.querySelector('#blog-title').dataset.blogId;
+  // here is broken and not showing delete
+  const blogID = document.querySelector('#blog-title').dataset.blog_id;
   const userID = deleteBlogButton.dataset.user_id;
 
   if (blogID === userID) {
