@@ -15,7 +15,7 @@ const updateCommentHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.replace('/');
+        window.history.back();
       } else {
         throw new Error(response.statusText);
       }

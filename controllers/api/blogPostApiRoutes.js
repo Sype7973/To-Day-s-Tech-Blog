@@ -23,10 +23,7 @@ router.put('/:id', withAuth, async (req, res) => {
   try {
     const blogPostData = await blogPost.update(req.body, {
         where: {
-            // make sure the id matches the session id
-            // does this need to be req.session.user_id? or is it title/content?
-            title: req.body.title,
-            body: req.body.body,
+            id: req.params.id,
         },
     });
     if (!blogPostData) {

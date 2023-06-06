@@ -17,7 +17,7 @@ router.get('/edit/:id', async (req, res) => {
         const comment = commentData.get({ plain: true });
         console.log("comment!!", comment);
         res.render('editComment', {
-            ...comment,
+            comment,
             logged_in: req.session.logged_in,
         });
     } catch (err) {

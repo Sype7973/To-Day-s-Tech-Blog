@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   editButtons.forEach(button => {
     button.addEventListener('click', () => {
-      const commentID = button.getAttribute('data-comment-user');
+      const commentID = button.getAttribute('data-comment-id');
       console.log(commentID);
       const url = `/comments/edit/${commentID}`;
       window.location.href = url;

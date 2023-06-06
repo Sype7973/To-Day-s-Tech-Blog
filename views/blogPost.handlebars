@@ -47,7 +47,7 @@
           {{!-- {{#ifEquals User.id user_id}} --}}
         <div class="container mb-4">
           <div class="buttons">
-            <button class="button is-primary is-small comment-edit is-fullwidth" id="commentUpdate" data-comment-user="{{User.id}}">Edit</button>
+            <button class="button is-primary is-small comment-edit is-fullwidth" id="commentUpdate" data-comment-user="{{User.id}}" data-comment-id="{{comment.id}}">Edit</button>
             <button class="button is-small is-danger comment-delete is-fullwidth" data-comment-user="{{User.id}}" data-id="{{id}}">Delete</button>
           </div>
         </div>
