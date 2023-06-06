@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
   
       const title = document.querySelector('#blogTitle').value.trim();
-      const content = document.querySelector('#blogContent').value.trim();
+      const body = document.querySelector('#blogContent').value.trim();
       const blogPostId = document.querySelector('#blogPostId').getAttribute('data-blog-id');
   
-      if (title && content) {
+      if (title && body) {
         try {
           const response = await fetch(`/api/blogposts/${blogPostId}`, {
             method: 'PUT',
-            body: JSON.stringify({ title, content }),
+            body: JSON.stringify({ title, body}),
             headers: { 'Content-Type': 'application/json' },
           });
   

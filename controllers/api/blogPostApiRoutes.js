@@ -18,13 +18,15 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// updates a blog post if they are logged in
+// updates a blog post if they are logged in e.g. localhost:8080/api/blogposts/1
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const blogPostData = await blogPost.update(req.body, {
         where: {
-            id: req.params.id,
-            user_id: req.session.user_id,
+            // make sure the id matches the session id
+            // does this need to be req.session.user_id? or is it title/content?
+            title: req.body.title,
+            body: req.body.body,
         },
     });
     if (!blogPostData) {

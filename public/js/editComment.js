@@ -1,27 +1,28 @@
 // // handle submit button for editing comment on editComment.handlebars
 const updateCommentHandler = async (event) => {
-    event.preventDefault();
-  
-    const content = document.querySelector('#edit-comment').value.trim();
-    const commentId = document.querySelector('#commentId').getAttribute('data-comment-id');
-  
-    if (content && commentId) {
-      try {
-        const response = await fetch(`/api/comments/${commentId}`, {
-          method: 'PUT',
-          body: JSON.stringify({ content }),
-          headers: { 'Content-Type': 'application/json' },
-        });
-  
-        if (response.ok) {
-          document.location.replace('/');
-        } else {
-          throw new Error(response.statusText);
-        }
-      } catch (err) {
-        alert(err.message);
+  event.preventDefault();
+
+  const content = document.querySelector('#edit-comment').value.trim();
+  const commentId = document.querySelector('#commentId').getAttribute('data-comment-id');
+
+  if (content && commentId) {
+    try {
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: 'PUT',
+        // does this need to be title, body from models?
+        body: JSON.stringify({ content }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        throw new Error(response.statusText);
       }
+    } catch (err) {
+      alert(err.message);
     }
-  };
-  
-  document.querySelector('#updateCommentbtn').addEventListener('click', updateCommentHandler);
+  }
+};
+
+document.querySelector('#updateCommentbtn').addEventListener('click', updateCommentHandler);

@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const commentData = await comments.update(req.body, {
+    const commentData = await Blogcomment.update(req.body, {
       where: {
         id: req.params.id,
       },
@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    const commentData = await comments.destroy({
+    const commentData = await Blogcomment.destroy({
       where: {
         id: req.params.id,
       },

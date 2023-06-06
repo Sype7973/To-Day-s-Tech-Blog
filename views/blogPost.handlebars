@@ -17,7 +17,7 @@
     <footer class="card-footer">
       {{#if isBlogOwner}}
         <a href="/blogposts/edit/{{id}}" class="card-footer-item" id="edit-blog">Edit</a>
-        <button class="button is-danger is-small comment-delete is-hidden" id="delete-blog">Delete</a>
+        <button class="button is-danger is-small comment-delete" id="delete-blog">Delete</a>
       {{/if}}
     </footer>
   </div>
@@ -45,10 +45,11 @@
             <p id="time">{{format_date date_created}}</p>
           </div>
           {{!-- {{#ifEquals User.id user_id}} --}}
+        <div class="container mb-4">
           <div class="buttons">
-            <button class="button is-primary is-small comment-edit" id="commentUpdate" data-comment-user="{{User.id}}">Edit</button>
-                     <button class="button is-small is-danger comment-delete p-4 is-size-6" id="" data-comment-user="{{User.id}}"
-                data-id="{{id}}">Delete</button>
+            <button class="button is-primary is-small comment-edit is-fullwidth" id="commentUpdate" data-comment-user="{{User.id}}">Edit</button>
+            <button class="button is-small is-danger comment-delete is-fullwidth" data-comment-user="{{User.id}}" data-id="{{id}}">Delete</button>
+          </div>
         </div>
           </div>
         </div>
