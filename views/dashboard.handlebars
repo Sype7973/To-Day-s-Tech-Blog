@@ -6,7 +6,7 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">{{title}}</p>
+            <p class="title is-4" data-blog-id="{{id}}">{{title}}</p>
             <p class="subtitle is-6">{{body}}</p>
           </div>
         </div>
@@ -21,10 +21,12 @@
         {{!-- only show edit and delete buttons if logged in --}}
         {{#if logged_in}}
         <a href="/blogposts/edit/{{id}}" class="card-footer-item is-hidden" id="dashboardEdit">Edit</a>
-        <a href="/blogposts/delete/{{id}}" class="card-footer-item is-hidden" id="dashboardDelete">Delete</a>
+        <button href="/blogposts/delete/{{id}}" class="card-footer-item is-hidden" id="dashboardDelete">Delete</a>
         {{/if}}
       </footer>
     </div>
     {{/each}}
   </div>
 </div>
+
+<script src="/js/dashboard.js"></script>
