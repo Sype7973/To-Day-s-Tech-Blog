@@ -18,7 +18,7 @@ router.get('/', withAuth, async (req, res) => {
         console.log(blogPosts);
 
         // Set the logged_in status in the res.locals object
-        res.locals.logged_in = req.session.logged_in || false;
+        res.locals.logged_in = req.session.logged_in || true;
 
         res.render('dashboard', {
             blogPosts,
