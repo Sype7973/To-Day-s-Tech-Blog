@@ -3,18 +3,23 @@
     <div class="card-content p-4">
       <div class="media">
         <div class="media-content">
-       
           <p class="title is-4" id="blog-title" data-blog-id="{{id}}">{{title}}</p>
           <p class="subtitle is-6" id="username">{{User.username}}</p>
-                    <br>
-            <p id="time">{{date_created}}</p>
-                    <br>
+          <br>
+          <p id="time">{{date_created}}</p>
+          <br>
         </div>
       </div>
       <div class="content">
         {{body}}
       </div>
     </div>
+    <footer class="card-footer">
+      {{#if isBlogOwner}}
+        <a href="/blogposts/{{id}}/edit" class="card-footer-item">Edit</a>
+        <a href="/blogposts/{{id}}/delete" class="card-footer-item">Delete</a>
+      {{/if}}
+    </footer>
   </div>
 </div>
 <div class="card">
@@ -43,7 +48,7 @@
               {{comment_body}}
             </div>
             <br>
-       <p id="time">{{date_created}}</p>
+            <p id="time">{{date_created}}</p>
           </div>
         </div>
       {{/each}}
