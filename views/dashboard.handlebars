@@ -20,8 +20,8 @@
         <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
         {{!-- only show edit and delete buttons if logged in --}}
         {{#if logged_in}}
-        <a href="/blogposts/edit/{{id}}" class="card-footer-item">Edit</a>
-        <a href="/blogposts/delete/{{id}}" class="card-footer-item">Delete</a>
+        <a href="/blogposts/edit/{{id}}" class="card-footer-item is-hidden" id="dashboardEdit">Edit</a>
+        <a href="/blogposts/delete/{{id}}" class="card-footer-item is-hidden" id="dashboardDelete">Delete</a>
         {{/if}}
       </footer>
     </div>
