@@ -60,6 +60,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
         const UpdateblogPost = blogPostData.get({ plain: true });
         res.render('editBlogPost', {
             ...UpdateblogPost,
+            logged_in: req.session.logged_in,
         });
     } catch (err) {
         console.log('error in dashboard route');
