@@ -4,19 +4,19 @@ const newBlogPostHandler = async (event) => {
     
     // Collect values from the login form
     const title = document.querySelector('#blogTitle').value.trim();
-    const content = document.querySelector('#blogContent').value.trim();
+    const body = document.querySelector('#blogBody').value.trim();
     
-    if (title && content) {
+    if (title && body) {
         // Send a POST request to the API endpoint
         const response = await fetch('/api/blogposts/', {
         method: 'POST',
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, body }),
         headers: { 'Content-Type': 'application/json' },
         });
     
         if (response.ok) {
         // If successful, redirect the browser to the profile page (list of blogposts)
-        document.location.replace('/dashboard');
+        document.location.replace('/');
         } else {
         alert(response.statusText);
         }
