@@ -1,0 +1,42 @@
+{{!-- render blogposts belonging to user logged in --}}
+<div class="columns is-centered">
+  <div class="column is-half">
+    {{#each blogPosts}}
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4 has-text-centered" data-blog-id="{{id}}" id="dashboardBlogTitle">{{title}}</p>
+            <p class="subtitle is-6" id="dashboardBlogContent">{{body}}</p>
+          </div>
+        </div>
+        <div class="content">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p class="is-size-6" id="dashboardBlogUser">User: {{User.username}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p id="time" class="is-size-6">Created: {{format_date date_created}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="card-footer">
+        <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
+        {{!-- Only show edit and delete buttons if logged in and owner of the blog post --}}
+        {{#if isBlogOwner}}
+            <a href="/blogposts/edit/{{id}}" class="card-footer-item">Edit</a>
+            <a class="card-footer-item" id="deleteBlogPost" data-blog-id="{{id}}" data-isBlogOwner="{{isBlogOwner}}">Delete</a>
+        {{/if}}
+      </footer>
+    </div>
+    {{/each}}
+  </div>
+</div>
+<script src="/js/dashboard.js"></script>

@@ -20,6 +20,8 @@ const sess = {
     httpOnly: true,
     secure: false,
     sameSite: 'strict',
+    // sets cookie to expire in 5 minutes
+    maxAge: 300000,
   },
   resave: false,
   saveUninitialized: true,
