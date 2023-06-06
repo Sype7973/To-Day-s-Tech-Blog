@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (response.ok) {
-          window.history.back();
+          // Go back to the previous page and replace it with a fresh copy
+          window.location.replace(document.referrer);
         } else {
           alert(response.statusText);
         }
