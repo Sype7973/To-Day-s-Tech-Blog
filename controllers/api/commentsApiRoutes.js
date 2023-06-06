@@ -63,8 +63,8 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  try {
-    const commentData = await Blogcomment.update(req.body, {
+  try { console.log(req.body, req.params);
+    const commentData = await Blogcomment.update({comment_body: req.body.content}, {
       where: {
         id: req.params.id,
       },

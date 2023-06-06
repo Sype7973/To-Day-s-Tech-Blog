@@ -12,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         const response = await fetch(`/api/comments/${commentId}`, {
           method: 'PUT',
+          // comment_body: content,
           body: JSON.stringify({ content }),
           headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-          window.history.back();
+          window.location.replace(document.referrer);
         } else {
           throw new Error(response.statusText);
         }
