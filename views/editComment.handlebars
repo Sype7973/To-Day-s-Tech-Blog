@@ -1,14 +1,19 @@
 {{!-- When edit button is pressed, it opens up the comment for editing --}}
-<div>
-    <div class="field">
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="has-text-centered">
+      <div class="field">
         <label class="label" for="edit-comment">Edit comment:</label>
         <div class="control">
-            <input class="textarea" type="text" id="edit-comment" />
+          <input class="textarea" type="text" id="edit-comment" />
         </div>
-    </div>
-    <div class="field">
+      </div>
+      <div class="field">
         <div class="control">
-            <button class="button is-link" type="submit" id="updateCommentbtn">Submit</button>
+          <button class="button is-link" type="submit" id="updateCommentbtn">Submit</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
+<script src="/js/editComment.js"></script>
