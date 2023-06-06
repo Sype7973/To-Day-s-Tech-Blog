@@ -1,4 +1,4 @@
-// delete button functionality for dashboard handlebars
+// delete button functionality for dashboard handlebars removes is-hidden class from delete button if it belongs to the user
 const deleteBlogPost = async (event) => {
     const blogPostId = event.target.getAttribute('data-blogpost-id');
     const response = await fetch('/api/blogposts/' + blogPostId, {
@@ -7,12 +7,12 @@ const deleteBlogPost = async (event) => {
     });
     if (response.ok) {
         document.location.reload();
-    } else {
+    }
+    else {
         alert(response.statusText);
     }
-}
-
-document.querySelectorAll('#dashboardDelete').forEach(item => {
-    item.addEventListener('click', deleteBlogPost);
+};
+document.querySelectorAll('.deleteBlogPost').forEach((button) => {
+    button.addEventListener('click', deleteBlogPost);
 }
 );

@@ -33,11 +33,17 @@ router.get('/:id', withAuth, async (req, res) => {
           },
         ],
       });
+      isBlogOwner = blogPostData.user_id;
+      isCommentsOwner = blogPostData.Blogcomments.user_id;
+      console.log(isBlogOwner);
+      console.log(isCommentsOwner);
       const uniqueBlogPost = blogPostData.get({ plain: true });
       console.log(uniqueBlogPost);
       res.render('blogPost', {
         ...uniqueBlogPost,
         logged_in: req.session.logged_in,
+        isBlogOwner,
+        isCommentsOwner,
       });
     } catch (err) {
       console.log('error in dashboard route');

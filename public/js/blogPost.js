@@ -61,27 +61,29 @@ const commentFormHandler = async (event) => {
       }
     });
   }
-  
+//   once document content is fully loaded, for each delete button, get the comment owner id from the data attribute isCommmetOwner,
+// if the comment owner id is the same as the logged-in user's Id, remote the is-hidden class from the delete button
+// otherwise, add the is-hidden class to the delete button
 document.addEventListener('DOMContentLoaded', function () {
-  const deleteButtons = document.querySelectorAll('.comment-delete');
-  const userID = deleteBlogButton ? deleteBlogButton.dataset.userId : null;
-
-  deleteButtons.forEach(button => {
-    const commentOwner = button.dataset.commentUser;
-    if (commentOwner === userID) {
-      button.classList.remove('is-hidden');
-    } else {
-      button.classList.add('is-hidden');
-    }
-  });
+ const deleteButtons = document.querySelectorAll('.comment-delete');
+    deleteButtons.forEach((button) => {
+        const isCommentOwner = button.getAttribute('data-isCommentOwner');
+        if (isCommentOwner === 'true') {
+            button.classList.remove('is-hidden');
+        }
+        else {
+            button.classList.add('is-hidden');
+        }
+    });
 });
+
   
   const deleteButtons = document.querySelectorAll('.comment-delete');
   
   deleteButtons.forEach(button => {
     button.addEventListener('click', async (event) => {
       event.stopPropagation();
-  
+
       const commentID = event.target.dataset.id;
   
       try {
@@ -91,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
   
         if (response.ok) {
-          document.location.reload();
+          document.location.replace('/');
         } else {
           throw new Error(response.statusText);
         }
