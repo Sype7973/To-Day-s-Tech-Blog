@@ -16,8 +16,8 @@
     </div>
     <footer class="card-footer">
       {{#if isBlogOwner}}
-        <a href="/blogposts/edit/{{id}}" class="card-footer-item">Edit</a>
-        <a href="/blogposts/{{id}}/delete" class="card-footer-item">Delete</a>
+        <a href="/blogposts/edit/{{id}}" class="card-footer-item" id="edit-blog">Edit</a>
+        <button class="card-footer-item"id="delete-blog">Delete</a>
       {{/if}}
     </footer>
   </div>
@@ -38,7 +38,7 @@
                 <p class="title is-4">{{User.username}}</p>
                 {{#if iscommentOwner}}
                   <div class="buttons">
-                    <button class="button is-primary is-small comment-edit is-hidden" id='hide' data-comment-id="{{id}}" data-comment-user="{{User.id}}">Edit</button>
+                    <button class="button is-primary is-small comment-edit" data-comment-id="{{id}}">Edit</button>
                     <button class="button is-danger is-small comment-delete is-hidden" id='hide' data-comment-id="{{id}}" data-comment-user="{{User.id}}">Delete</button>
                   </div>
                 {{/if}}

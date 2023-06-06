@@ -100,3 +100,42 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  const editButtons = document.querySelectorAll('.comment-edit');
+
+  editButtons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      event.stopPropagation();
+    
+      const commentID = event.target.dataset.commentId;
+      const commentElement = event.target.parentElement.parentElement.parentElement;
+      const commentContent = commentElement.querySelector('.content');
+      const currentComment = commentContent.textContent.trim();
+    
+      const newComment = prompt('Enter the updated comment:', currentComment);
+    
+      if (newComment) {
+        try {
+          const response = await fetch(`/api/comments/${commentID}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ comment_body: newComment }),
+          });
+    
+          if (response.ok) {
+            document.location.reload();
+          } else {
+            throw new Error(response.statusText);
+          }
+        } catch (err) {
+          alert(err.message);
+        }
+      }
+    });
+  });
+
+    
+
+
+
+
