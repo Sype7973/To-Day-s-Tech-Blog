@@ -8,7 +8,7 @@ const newBlogPostHandler = async (event) => {
     
     if (title && content) {
         // Send a POST request to the API endpoint
-        const response = await fetch('/api/blogposts', {
+        const response = await fetch('/api/blogposts/', {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: { 'Content-Type': 'application/json' },

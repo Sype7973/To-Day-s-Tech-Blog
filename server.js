@@ -7,6 +7,9 @@ const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const handlebars = require('handlebars');
+const handlehelpers = require('handlebars-helpers')();
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,6 +27,8 @@ const sess = {
     db: sequelize,
   }),
 };
+
+handlebars.registerHelper(handlehelpers);
 
 app.use(session(sess));
 app.use(morgan('dev'));

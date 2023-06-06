@@ -2,19 +2,17 @@
   <div class="card-content">
     <div class="media">
       <div class="media-content">
-        <p class="title is-4">{{title}}</p>
-        <p class="subtitle is-6">{{User.username}}</p>
+        <p class="title is-4" id="blog-title" data-blog-id="{{id}}">{{title}}</p>
+        <p class="subtitle is-6" id="username">{{User.username}}</p>
       </div>
     </div>
-
-    <div class="content">
+    <div class="content" >
       {{body}}
       <br>
       {{date_created}}
     </div>
   </div>
 </div>
-
 <div class="card">
   <div class="card-content">
     <div class="media">
@@ -40,21 +38,23 @@
       {{!-- if logged in statement to delete/edit blogpost if it belongs to user --}}
       {{#if logged_in}}
           <a href="/blogposts/edit/{{id}}" class="button is-primary" data-blog-id="{{id}}" data-blog-owner="{{User.id}}">Edit</a>
-          <a href="/blogposts/{{id}}" class="button is-danger" data-blog-id="{{id}}" data-blog-owner="{{User.id}}">Delete</a>
+          <a href="/blogposts/{{id}}" class="button is-danger is-hidden" id="delete-blog" data-user-id="{{User.id}}">Delete</a>
       {{/if}}
       {{!-- if logged in statement to add comment --}}
       {{#if logged_in}}
-          <div class="field">
-            <label class="label">Add a comment</label>
-            <div class="control">
-              <textarea class="textarea" name="comment_body" placeholder="Add a comment"></textarea>
+    <div class="card-content">
+        <form class="comment-form" id="user-id" data-comment-user="{{user_id}}">
+            <div class="field">
+                <label class="label" for="new-comment">Leave a comment:</label>
+                <div class="control">
+                    <input class="textarea" type="text" id="new-comment" />
+                </div>
             </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <button class="button is-link" id="commentSubmitButton">Submit</button>
+            <div class="field">
+                <div class="control has-text-centered">
+                    <button class="button is-primary p-4 is-size-6 is-fullwidth" type="submit">Post</button>
+                </div>
             </div>
-          </div>
         </form>
       {{/if}}
     </div>
