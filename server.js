@@ -28,7 +28,13 @@ const sess = {
   }),
 };
 
-handlebars.registerHelper(handlehelpers);
+handlebars.registerHelper('ifEquals', function(a, b, opts) {
+  if (a === b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
 
 app.use(session(sess));
 app.use(morgan('dev'));

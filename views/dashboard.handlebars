@@ -20,13 +20,12 @@
         <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
         {{!-- Only show edit and delete buttons if logged in and owner of the blog post --}}
         {{#if isBlogOwner}}
-          {{#if logged_in}}
             <a href="/blogposts/edit/{{id}}" class="card-footer-item">Edit</a>
-            <button href="/blogposts/delete/{{id}}" class="card-footer-item">Delete</button>
-          {{/if}}
+            <button class="card-footer-item deleteBlogPost" data-blog-id="{{id}}" data-isBlogOwner="{{isBlogOwner}}">Delete</button>
         {{/if}}
       </footer>
     </div>
     {{/each}}
   </div>
 </div>
+<script src="/js/dashboard.js"></script>

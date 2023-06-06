@@ -29,115 +29,96 @@ const commentFormHandler = async (event) => {
   
   document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
   
-  const deleteBlogButton = document.querySelector('#delete-blog');
   
-  if (deleteBlogButton) {
-    const blogID = document.querySelector('#blog-title').dataset.blogId;
-    const userID = deleteBlogButton.dataset.userId;
+  document.addEventListener('DOMContentLoaded', function () {
+    const deleteButtons = document.querySelectorAll('.comment-delete');
+    const userID = document.querySelector('#user-id').dataset.userId;
   
-    if (blogID === userID) {
-      deleteBlogButton.classList.remove('hide');
-    } else {
-      deleteBlogButton.classList.add('hide');
-    }
-  
-    deleteBlogButton.addEventListener('click', async (event) => {
-      event.preventDefault();
-  
-      try {
-        const response = await fetch(`/api/blogposts/${blogID}`, {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-        });
-  
-        if (response.ok) {
-          // If successful, refresh to view comment
-          document.location.replace(`/blogposts/${blogID}`);
-        } else {
-          throw new Error(response.statusText);
-        }
-      } catch (err) {
-        alert(err.message);
+    deleteButtons.forEach(button => {
+      const commentOwner = button.getAttribute('data-comment-user');
+      console.log('commentOwner', commentOwner);
+      console.log('userID', userID);
+      if (commentOwner === userID) {
+        button.classList.remove('is-hidden');
+      } else {
+        button.classList.add('is-hidden');
       }
     });
-  }
-//  once document content is fully loaded, for each delete button, get the comment owner id from the data attribute isCommmetOwner,
-// if the comment owner id is the same as the logged-in user's Id, remote the is-hidden class from the delete button
-// otherwise, add the is-hidden class to the delete button
-document.addEventListener('DOMContentLoaded', function () {
- const deleteButtons = document.querySelectorAll('.comment-delete');
-    deleteButtons.forEach((button) => {
-        const isCommentOwner = button.getAttribute('data-isCommentOwner');
-        if (isCommentOwner === 'true') {
-            button.classList.remove('is-hidden');
-        }
-        else {
-            button.classList.add('is-hidden');
-        }
+  });
+
+const deleteButtons = document.querySelectorAll('.comment-delete');
+
+deleteButtons.forEach(button => {
+  button.addEventListener('click', async (event) => {
+    event.stopPropagation();
+
+    const commentID = event.target.getAttribute('data-id');
+
+    const response = await fetch(`/api/comments/${commentID}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
     });
+
+    if (response.ok) {
+      document.location.reload();
+    } else {
+      alert(response.statusText);
+    }
+  });
 });
 
-  
-  const deleteButtons = document.querySelectorAll('.comment-delete');
-  
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', async (event) => {
-      event.stopPropagation();
 
-      const commentID = event.target.dataset.id;
+const deleteBlogButton = document.querySelector('#delete-blog');
   
-      try {
-        const response = await fetch(`/api/comments/${commentID}`, {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-        });
-  
-        if (response.ok) {
-          document.location.replace('/');
-        } else {
-          throw new Error(response.statusText);
-        }
-      } catch (err) {
-        alert(err.message);
+if (deleteBlogButton) {
+  const blogID = document.querySelector('#blog-title').dataset.blogId;
+  const userID = deleteBlogButton.dataset.user_id;
+
+  if (blogID === userID) {
+    deleteBlogButton.classList.remove('hide');
+  } else {
+    deleteBlogButton.classList.add('hide');
+  }
+
+  deleteBlogButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(`/api/blogposts/${blogID}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.ok) {
+        // If successful, refresh to view comment
+        document.location.replace(`/blogposts/${blogID}`);
+      } else {
+        throw new Error(response.statusText);
       }
-    });
+    } catch (err) {
+      alert(err.message);
+    }
   });
-
+}
+//  hide edit button if not comment owner based on id in data-comment-user
+document.addEventListener('DOMContentLoaded', function () {
   const editButtons = document.querySelectorAll('.comment-edit');
-
+  
   editButtons.forEach(button => {
-    button.addEventListener('click', async (event) => {
-      event.stopPropagation();
-    
-      const commentID = event.target.dataset.commentId;
-      const commentElement = event.target.parentElement.parentElement.parentElement;
-      const commentContent = commentElement.querySelector('.content');
-      const currentComment = commentContent.textContent.trim();
-    
-      const newComment = prompt('Enter the updated comment:', currentComment);
-    
-      if (newComment) {
-        try {
-          const response = await fetch(`/api/comments/${commentID}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ comment_body: newComment }),
-          });
-    
-          if (response.ok) {
-            document.location.reload();
-          } else {
-            throw new Error(response.statusText);
-          }
-        } catch (err) {
-          alert(err.message);
-        }
-      }
+    button.addEventListener('click', () => {
+      const commentID = button.getAttribute('data-comment-user');
+      console.log(commentID);
+      const url = `/comments/edit/${commentID}`;
+      window.location.href = url;
     });
+
+    const commentOwner = button.getAttribute('data-comment-user');
+    const userID = document.querySelector('#user-id').dataset.userId;
+
+    if (commentOwner === userID) {
+      button.classList.remove('is-hidden');
+    } else {
+      button.classList.add('is-hidden');
+    }
   });
-
-    
-
-
-
-
+});

@@ -36,12 +36,6 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4">{{User.username}}</p>
-                {{#if isCommentOwner}}
-                  <div class="buttons">
-                    <button class="button is-primary is-small comment-edit" data-comment-id="{{id}}">Edit</button>
-                    <button class="button is-danger is-small comment-delete is-hidden" id='hide' data-comment-id="{{id}}" data-comment-user="{{User.id}}">Delete</button>
-                  </div>
-                {{/if}}
               </div>
             </div>
             <div class="content">
@@ -50,11 +44,18 @@
             <br>
             <p id="time">{{date_created}}</p>
           </div>
+          {{!-- {{#ifEquals User.id user_id}} --}}
+          <div class="buttons">
+            <button class="button is-primary is-small comment-edit" id="commentUpdate" data-comment-user="{{User.id}}">Edit</button>
+                     <button class="button is-small is-danger comment-delete p-4 is-size-6" id="" data-comment-user="{{User.id}}"
+                data-id="{{id}}">Delete</button>
         </div>
+          </div>
+        </div>
+        {{!-- {{/ifEquals}} --}}
       {{/each}}
-      {{#if logged_in}}
         <div class="card-content">
-          <form class="comment-form" id="user-id" data-user-id="{{User.id}}">
+          <form class="comment-form" id="user-id" data-user-id="{{user_id}}">
             <div class="field">
               <label class="label" for="new-comment">Leave a comment:</label>
               <div class="control">
@@ -68,7 +69,6 @@
             </div>
           </form>
         </div>
-      {{/if}}
     </div>
   </div>
 </div>
