@@ -15,15 +15,17 @@ You can install this project by cloning the repository from github and running n
 
 Github repo: https://github.com/Sype7973/To-Day-s-Tech-Blog
 
+heroku app link: https://to-days-tech-blog1.herokuapp.com/
+
 ## Usage
 
-to access the website use the heroku app link: https://to-days-tech-blog.herokuapp.com/ or by cloning the repo. Once on the application, you will have to sign up, you should be redirected to the sign up page as all of the application requires a login session to access
+to access the website use the heroku app link: https://to-days-tech-blog.herokuapp.com/ or by cloning the repo. Once on the application, you will have to sign up, you should be redirected to the sign up page as all of the application requires a login session to access. please enter in a Name, Username, email and password
 
+![Sign up page](/public/img/screencap.PNG)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+Once signed up, hit the create a post button to start posting!
 
+you can press the dashboard button at any time to view your posts and edit them and delete them
 
 
 ## License
