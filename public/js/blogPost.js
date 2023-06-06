@@ -61,7 +61,7 @@ const commentFormHandler = async (event) => {
       }
     });
   }
-//   once document content is fully loaded, for each delete button, get the comment owner id from the data attribute isCommmetOwner,
+//  once document content is fully loaded, for each delete button, get the comment owner id from the data attribute isCommmetOwner,
 // if the comment owner id is the same as the logged-in user's Id, remote the is-hidden class from the delete button
 // otherwise, add the is-hidden class to the delete button
 document.addEventListener('DOMContentLoaded', function () {

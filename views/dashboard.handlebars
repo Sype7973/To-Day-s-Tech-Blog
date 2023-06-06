@@ -2,6 +2,7 @@
 <div class="columns is-centered">
   <div class="column is-half">
     {{#each blogPosts}}
+    
     <div class="card">
       <div class="card-content">
         <div class="media">
@@ -19,9 +20,11 @@
       <footer class="card-footer">
         <a href="/blogposts/{{id}}" class="card-footer-item">View</a>
         {{!-- only show edit and delete buttons if logged in --}}
+        {{#if isBlogOwner}}
         {{#if logged_in}}
         <a href="/blogposts/edit/{{id}}" class="card-footer-item is-hidden" id="dashboardEdit">Edit</a>
         <button href="/blogposts/delete/{{id}}" class="card-footer-item is-hidden" id="dashboardDelete">Delete</a>
+        {{/if}}
         {{/if}}
       </footer>
     </div>
