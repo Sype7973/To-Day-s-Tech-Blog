@@ -69,6 +69,7 @@ router.put('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
+    console.log("!!!!!!!!!",commentData);
     if (!commentData[0]) {
       res.status(404).json({ message: 'No comment found with this id!' });
       return;
