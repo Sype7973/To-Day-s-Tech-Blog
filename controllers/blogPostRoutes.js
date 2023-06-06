@@ -18,32 +18,29 @@ router.get('/create', withAuth, async (req, res) => {
 router.get('/:id', withAuth, async (req, res) => {
     try {
       const blogPostData = await blogPost.findByPk(req.params.id, {
-        include: [
-          {
-            model: User,
-            attributes: ['username'],
-          },
-          {
-            model: Blogcomment,
-            attributes: ['id', 'comment_body', 'user_id', 'blogPost_id', 'date_created'],
-            include: {
-              model: User,
-              attributes: ['username'],
-            },
-          },
-        ],
+        include: [{model: User}]
       });
-      isBlogOwner = blogPostData.user_id;
-      isCommentsOwner = blogPostData.Blogcomments.user_id;
-      console.log(isBlogOwner);
-      console.log(isCommentsOwner);
+      // serialize data
       const uniqueBlogPost = blogPostData.get({ plain: true });
+
+      const isBlogOwner = uniqueBlogPost.user_id === req.session.user_id;
+
+      // comments array map
+      const commentsData = await Blogcomment.findAll({
+        where: { blogPost_id: req.params.id },
+        include: [{ model: User }],
+      });
+      const commentsArray = commentsData.map((comment) => comment.get({ plain: true }));
+
+      console.log(commentsArray);
+  
       console.log(uniqueBlogPost);
       res.render('blogPost', {
         ...uniqueBlogPost,
         logged_in: req.session.logged_in,
         isBlogOwner,
-        isCommentsOwner,
+        commentsArray,
+        user_id: req.session.user_id,
       });
     } catch (err) {
       console.log('error in dashboard route');

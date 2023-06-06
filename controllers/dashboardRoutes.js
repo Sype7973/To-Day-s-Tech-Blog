@@ -9,13 +9,16 @@ router.get('/', withAuth, async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['username'],
+                    attributes: ['username', 'id'],
                 },
             ],
         });
-        console.log(blogPostData);
-        const blogPosts = blogPostData.map((blogPost) => blogPost.get({ plain: true }));
-        console.log(blogPosts);
+
+        const blogPosts = blogPostData.map((blogPost) => {
+            const plainBlogPost = blogPost.get({ plain: true });
+            plainBlogPost.isBlogOwner = plainBlogPost.user_id === req.session.user_id;
+            return plainBlogPost;
+        });
 
         // Set the logged_in status in the res.locals object
         res.locals.logged_in = req.session.logged_in || true;
@@ -48,6 +51,8 @@ router.get('/logout', (req, res) => {
         res.redirect('/login');
     }
 });
+
+module.exports = router;
 
 
 
